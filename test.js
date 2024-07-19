@@ -43,7 +43,7 @@ class Character {
     }
 }
 
-function calculateDamage(attacker, defender, isPhysical) {
+function calculateDamage(attacker, defender, isPhysical, damageDivider) {
     let attackValue, defenseValue;
 
     if (isPhysical) {
@@ -54,16 +54,32 @@ function calculateDamage(attacker, defender, isPhysical) {
         defenseValue = defender.calculateMentalDefense();
     }
 
-    let damage = attackValue - defenseValue + Math.floor(Math.random() * 10 - 5); // Random variáció: -5 és +5 között
+    let damage = (attackValue - defenseValue) / damageDivider + Math.floor(Math.random() * 10 - 5); // Random variáció: -5 és +5 között
     return damage > 0 ? damage : 0; // Negatív sebzés nem lehetséges
 }
 
-function battleTurn(attacker, defender, isPhysical) {
-    const damage = calculateDamage(attacker, defender, isPhysical);
+function battleTurn(attacker, defender, isPhysical, damageDivider) {
+    const damage = calculateDamage(attacker, defender, isPhysical, damageDivider);
     defender.takeDamage(damage);
-    console.log(`${attacker.name} dealt ${damage} damage to ${defender.name}`);
+    console.log(`${attacker.name} dealt ${damage.toFixed(2)} damage to ${defender.name}. ${defender.name} has ${defender.health.toFixed(2)} health left.`);
     if (defender.isDefeated()) {
         console.log(`${defender.name} is defeated!`);
+    }
+}
+
+function battle(attacker, defender, damageDivider, isPhysical) {
+    let round = 1;
+    while (!attacker.isDefeated() && !defender.isDefeated()) {
+        console.log(`Round ${round}:`);
+        battleTurn(attacker, defender, isPhysical, damageDivider);
+        if (defender.isDefeated()) break;
+        battleTurn(defender, attacker, isPhysical, damageDivider);
+        round++;
+    }
+    if (attacker.isDefeated()) {
+        console.log(`${attacker.name} is defeated! ${defender.name} wins!`);
+    } else if (defender.isDefeated()) {
+        console.log(`${defender.name} is defeated! ${attacker.name} wins!`);
     }
 }
 
@@ -77,13 +93,18 @@ const kael = new Character('Kael Varn', 'Human', 'Male', 185, 80, true,
 );
 
 const stormtrooper = new Character('Stormtrooper', 'Human', 'Male', 180, 75, false, 
-    { physicalStrength: 50, intelligence: 40, empathy: 0, endurance: 60, agility: 50 },
+    { physicalStrength: 50, intelligence: 40, empathy: 20, endurance: 60, agility: 50 },
     { forcePush: 0, forceHeal: 0, forceChoke: 0, forceLightning: 0, mindTrick: 0 },
-    { lightsaberMastery: 0, stealth: 0, defense: 70, healing: 0, illusion: 0 },
+    { lightsaberMastery: 0, stealth: 0, defense: 0, healing: 0, illusion: 0 },
     80, 80, ['Blaster Rifle', 'Stormtrooper Armor'], 
     'A loyal soldier of the Galactic Empire, the stormtrooper is well-trained but lacks the Force abilities of a Jedi.'
 );
 
 // Példa csata
-battleTurn(kael, stormtrooper, true); // Fizikai támadás
-battleTurn(kael, stormtrooper, false); // Mentális támadás
+const damageDivider = 5; // Sebzés csökkentő faktor
+
+console.log("Fizikai csata:");
+battle(kael, stormtrooper, damageDivider, true);
+
+console.log("\nMentális csata:");
+battle(kael, stormtrooper, damageDivider, false);
