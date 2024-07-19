@@ -1,18 +1,40 @@
 class Character {
     constructor(name, species, gender, height, weight, jedi, attributes, forceAbilities, jediSkills, health, stamina, equipment, backstory) {
-        this.name = name;
-        this.species = species;
-        this.gender = gender;
-        this.height = height;
-        this.weight = weight;
-        this.jedi = jedi;
-        this.attributes = attributes;
-        this.forceAbilities = forceAbilities;
-        this.jediSkills = jediSkills;
-        this.health = health;
-        this.stamina = stamina;
-        this.equipment = equipment;
-        this.backstory = backstory;
+        this.name = name;                       // név
+        this.species = species;                 // faj
+        this.gender = gender;                   // nem
+        this.height = height;                   // magasság
+        this.weight = weight;                   // súly
+        this.jedi = jedi;                       // jedi
+        this.attributes = attributes;           // attribútumok
+        /*
+            physicalStrength                        fizikai erő
+            intelligence                            intelligencia
+            empathy                                 empátia
+            endurance                               kitartás
+            agility                                 agilitás
+        */
+        this.forceAbilities = forceAbilities;   // erő képességek
+        /*
+            forcePush                               erő lökés
+            forceHeal                               erő gyógyítás
+            forceChoke                              erő fojtás
+            forceLightning                          erő villám
+            mindTrick                               elme trükk
+            erő Nyomja meg
+        */
+        this.jediSkills = jediSkills;           // jedi képességek
+        /*
+            lightsaberMastery                       fénykard jártasság            
+            stealth                                 lopakodás
+            defense                                 védelem
+            healing                                 gyógyulás
+            illusion                                illúzió
+        */
+        this.health = health;                   // egészség
+        this.stamina = stamina;                 // állóképesség
+        this.equipment = equipment;             // felszerelés
+        this.backstory = backstory;             // háttértörténet
     }
 
     calculatePhysicalAttack() {
