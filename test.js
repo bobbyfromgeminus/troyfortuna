@@ -77,7 +77,7 @@ function calculateDamage(attacker, defender, isPhysical, damageDivider) {
     }
 
     let damage = (attackValue - defenseValue) / damageDivider + Math.floor(Math.random() * 10 - 5); // Random variáció: -5 és +5 között
-    return damage > 0 ? damage : 0; // Negatív sebzés nem lehetséges
+    return damage < 0 ? damage : 0; // Negatív sebzés nem lehetséges
 }
 
 function battleTurn(attacker, defender, isPhysical, damageDivider) {
