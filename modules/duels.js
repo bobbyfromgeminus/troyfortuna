@@ -33,7 +33,7 @@ export const duels = [
         charName: 'Asajj Ventress',
         enemyName: 'Anakin Skywalker',
         enemyId: 1,
-        multiplier: 1.5
+        multiplier: 1.3
     },
 
 ]

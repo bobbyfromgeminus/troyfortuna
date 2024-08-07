@@ -52,14 +52,15 @@ export class Character {
         let physicalStrength = this.attributes.physicalStrength;
 
         let myDuels = [];
-
         if (this.duel.length > 0) {
             this.duel.forEach( item => {
                 let duelX = duels.find( element => element.id == item);
                 if (duelX.id) myDuels.push(duelX);
             })
-            const duelEnemy = myDuels.find( duel => duel.enemyId == enemy.id);
-            physicalStrength *= duelEnemy.multiplier;
+            if (myDuels.some( duel => duel.enemyId == enemy.id)) {
+                const duelEnemy = myDuels.find( duel => duel.enemyId == enemy.id);
+                physicalStrength *= duelEnemy.multiplier;
+            }
         }
 
         return physicalStrength + this.attributes.agility + (this.jedi ? this.jediSkills.lightsaberMastery : 0);
