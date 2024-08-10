@@ -25,16 +25,14 @@ function battleTurn(attacker, defender, isPhysical, damageDivider) {
     }
 }
 
-export function battle(attacker, defender, damageDivider, isPhysical) {
-    let round = 1;
-    // mindtrick bevezetése
+export function battle(round, attacker, defender, damageDivider, isPhysical) {
     
-    while (!attacker.isDefeated() && !defender.isDefeated()) {
+    if (!attacker.isDefeated() && !defender.isDefeated()) {
         output += `\n<h2>Round ${round}:</h2>`;
         battleTurn(attacker, defender, isPhysical, damageDivider);
-        if (defender.isDefeated()) break;
-        battleTurn(defender, attacker, isPhysical, damageDivider);
-        round++;
+        if (!defender.isDefeated()) {
+            battleTurn(defender, attacker, isPhysical, damageDivider);
+        };
     }
     if (attacker.isDefeated()) {
         output += `<i>${defender.name}</i> wins!\n`;

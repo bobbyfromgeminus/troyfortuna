@@ -1,5 +1,5 @@
 import { Character } from './class_character.js';
-import { characters } from './characters_json.js';
+import { characters } from './data_characters.js';
 
 
 export let generated_chars = [];
