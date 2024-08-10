@@ -1,0 +1,16 @@
+{
+  "type": "module",
+  "name": "star-wars-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install-server": "cd ./server && npm install",
+    "install-client": "cd ./client && npm install",
+    "server": "cd ./server && node ./server.js",
+    "client": "cd ./client && npm start"
+  },
+  "keywords": [],
+  "author": "bobbyfromgeminus",
+  "license": "ISC"
+}

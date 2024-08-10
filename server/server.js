@@ -58,8 +58,8 @@ app.use(express.json());
         console.error(error);
         res.status(500).send('Internal Server Error'); 
       } else {
-        const productData = { characters: rows };
-        const prettyJson = JSON.stringify(productData, null, 2);
+        const characterData = { characters: rows };
+        const prettyJson = JSON.stringify(characterData, null, 2);
         res.type('json').send(prettyJson);
         const currentDate = new Date().toLocaleString();
         console.log(`[API ENDPOINT] ${currentDate}: GET all characters (Get All)`);
@@ -70,18 +70,18 @@ app.use(express.json());
 
   // GET ONE (Read) --------------------------------------
   app.get('/api/characters/:id', (req, res) => {
-    const productId = parseInt(req.params.id, 10);
-    db.get('SELECT * FROM characters WHERE id = ?', [productId], (error, row) => {
+    const characterId = parseInt(req.params.id, 10);
+    db.get('SELECT * FROM characters WHERE id = ?', [characterId], (error, row) => {
       if (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');
       } else if (row) {
-        const prettyJson = JSON.stringify({ message: 'Get one Product successfully', product: row }, null, 2);
+        const prettyJson = JSON.stringify({ message: 'Get one character successfully', character: row }, null, 2);
         res.type('json').status(201).send(prettyJson);
         const currentDate = new Date().toLocaleString();
-        console.log(`[API ENDPOINT] ${currentDate}: GET one Product (GET One)`);
+        console.log(`[API ENDPOINT] ${currentDate}: GET one character (GET One)`);
       } else {
-        res.status(404).json({ error: 'Product not found' });
+        res.status(404).json({ error: 'character not found' });
       }
     });
   });
@@ -100,7 +100,7 @@ app.use(express.json());
       return res.status(400).json({ error: 'Missing required data' });
     }
 
-    // Az új termék hozzáadása az adatbázishoz
+    // Az új karakter hozzáadása az adatbázishoz
     const sql = 'INSERT INTO characters (name, name2, species, gender, height, weight, jedi, attributes_physicalStrength, attributes_intelligence, attributes_empathy, attributes_endurance, attributes_agility, forceAbilities_forcePush, forceAbilities_forceHeal, forceAbilities_forceChoke, forceAbilities_forceLightning, forceAbilities_mindTrick, jediSkills_lightsaberMastery, jediSkills_stealth, jediSkills_defense, jediSkills_healing, jediSkills_illusion, health, stamina, equipment, backstory, duel) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
     const values = [name, name2, species, gender, height, weight, jedi, attributes_physicalStrength, attributes_intelligence, attributes_empathy, attributes_endurance, attributes_agility, forceAbilities_forcePush, forceAbilities_forceHeal, forceAbilities_forceChoke, forceAbilities_forceLightning, forceAbilities_mindTrick, jediSkills_lightsaberMastery, jediSkills_stealth, jediSkills_defense, jediSkills_healing, jediSkills_illusion, health, stamina, equipment, backstory, duel];
 
@@ -110,18 +110,18 @@ app.use(express.json());
         return res.status(500).json({ error: 'Internal Server Error' });
       }
 
-      // Az új termék ID-je a beszúrás után
+      // Az új karakter ID-je a beszúrás után
       const newCharacterId = this.lastID;
 
-      // Az új termék lekérése a beszúrás után
+      // Az új karakter lekérése a beszúrás után
       db.get('SELECT * FROM characters WHERE id = ?', [newCharacterId], (err, newRow) => {
         if (err) {
           console.error(err);
           return res.status(500).json({ error: 'Internal Server Error' });
         }
 
-        // Válasz küldése az új termékkel
-        res.status(201).json({ message: 'Character created successfully', product: newRow });
+        // Válasz küldése az új karakterrel
+        res.status(201).json({ message: 'Character created successfully', character: newRow });
         const currentDate = new Date().toLocaleString();
         console.log(`[API ENDPOINT] ${currentDate}: CREATE new Character (POST)`);
       });
@@ -131,23 +131,50 @@ app.use(express.json());
 
   // PUT (Update) ----------------------------------------
   app.put('/api/characters/:id', (req, res) => {
-    const productId = parseInt(req.params.id, 10);
+    const characterId = parseInt(req.params.id, 10);
     
     // Ellenőrizzük, hogy a megadott ID érvényes
-    if (isNaN(productId) || productId <= 0) {
-      return res.status(400).json({ error: 'Invalid product ID' });
+    if (isNaN(characterId) || characterId <= 0) {
+      return res.status(400).json({ error: 'Invalid character ID' });
     }
     
-    // Ellenőrizzük, hogy érkezett-e adat a kérési testtel
+    // Ellenőrizzük, hogy érkezett-e adat a kérés-törzzsel
     if (!req.body) {
       return res.status(400).json({ error: 'No data provided' });
     }
 
-    // SQL parancs a termék frissítésére
+    // SQL parancs a karakter frissítésére
     const sql = `
       UPDATE characters
-      SET name = $name, price = $price, description = $description, available = $available, origin = $origin, img = $img
-      WHERE id = $productId
+      SET 
+      name = $name, 
+      name2 = $name2, 
+      species = $,species 
+      gender = $gender, 
+      height = $height, 
+      weight = $weight, 
+      jedi = $jedi, 
+      attributes_physicalStrength = $attributes_physicalStrength, 
+      attributes_intelligence = $attributes_intelligence, 
+      attributes_empathy = $attributes_empathy, 
+      attributes_endurance = $attributes_endurance, 
+      attributes_agility = $attributes_agility, 
+      forceAbilities_forcePush = $forceAbilities_forcePush, 
+      forceAbilities_forceHeal = $forceAbilities_forceHeal, 
+      forceAbilities_forceChoke = $forceAbilities_forceChoke, 
+      forceAbilities_forceLightning = $forceAbilities_forceLightning, 
+      forceAbilities_mindTrick = $forceAbilities_mindTrick, 
+      jediSkills_lightsaberMastery = $jediSkills_lightsaberMastery, 
+      jediSkills_stealth = $jediSkills_stealth, 
+      jediSkills_defense = $jediSkills_defense, 
+      jediSkills_healing = $jediSkills_healing, 
+      jediSkills_illusion = $jediSkills_illusion, 
+      health = $health, 
+      stamina = $stamina, 
+      equipment = $equipment, 
+      backstory = $backstory, 
+      duel = $duel 
+      WHERE id = $characterId
     `;
 
     const { name, price, description, available, origin, img } = req.body;
@@ -160,7 +187,7 @@ app.use(express.json());
       $available: available,
       $origin: origin,
       $img: img,
-      $productId: productId
+      $characterId: characterId
     }, function (err) {
       if (err) {
         console.error(err);
@@ -168,9 +195,9 @@ app.use(express.json());
       } else {
         // Ellenőrizzük, hogy valóban módosítottuk-e egy rekordot
         if (this.changes > 0) {
-          res.status(200).json({ message: 'Product updated successfully', product: req.body });
+          res.status(200).json({ message: 'character updated successfully', character: req.body });
         } else {
-          res.status(404).json({ error: 'Product not found' });
+          res.status(404).json({ error: 'character not found' });
         }
       }
     });
@@ -179,11 +206,11 @@ app.use(express.json());
 
   // PATCH (Modify) --------------------------------------
   app.patch('/api/characters/:id', (req, res) => {
-    const productId = parseInt(req.params.id, 10);
+    const characterId = parseInt(req.params.id, 10);
 
     // Ellenőrizzük, hogy a megadott ID érvényes
-    if (isNaN(productId) || productId <= 0) {
-      return res.status(400).json({ error: 'Invalid product ID' });
+    if (isNaN(characterId) || characterId <= 0) {
+      return res.status(400).json({ error: 'Invalid character ID' });
     }
 
     // Ellenőrizzük, hogy érkezett-e adat a kérési testtel
@@ -199,7 +226,7 @@ app.use(express.json());
       return res.status(400).json({ error: 'No data provided for partial update' });
     }
 
-    // SQL parancs a termék részleges frissítésére
+    // SQL parancs a karakter részleges frissítésére
     const sql = `
     UPDATE characters
     SET ${Object.keys(updatedFields).map(key => `${key} = ?`).join(', ')}
@@ -207,7 +234,7 @@ app.use(express.json());
     `;
 
     // Az értékeket egy tömbben adjuk át
-    const params = [...Object.values(updatedFields), productId];
+    const params = [...Object.values(updatedFields), characterId];
 
 
     // Futtatjuk a részleges frissítő SQL parancsot
@@ -218,9 +245,9 @@ app.use(express.json());
       } else {
         // Ellenőrizzük, hogy valóban módosítottuk-e egy rekordot
         if (this.changes > 0) {
-          res.status(200).json({ message: 'Product modified successfully', product: { id: productId, ...updatedFields } });
+          res.status(200).json({ message: 'character modified successfully', character: { id: characterId, ...updatedFields } });
         } else {
-          res.status(404).json({ error: 'Product not found' });
+          res.status(404).json({ error: 'character not found' });
         }
       }
     });
@@ -229,30 +256,30 @@ app.use(express.json());
 
   // DELETE (Delete) -------------------------------------
   app.delete('/api/characters/:id', (req, res) => {
-    const productId = parseInt(req.params.id, 10);
+    const characterId = parseInt(req.params.id, 10);
     
     // Ellenőrizzük, hogy a megadott ID érvényes
-    if (isNaN(productId) || productId <= 0) {
-      return res.status(400).json({ error: 'Invalid product ID' });
+    if (isNaN(characterId) || characterId <= 0) {
+      return res.status(400).json({ error: 'Invalid character ID' });
     }
 
-    // SQL parancs a termék törlésére
+    // SQL parancs a karakter törlésére
     const sql = `
       DELETE FROM characters
-      WHERE id = $productId
+      WHERE id = $characterId
     `;
 
     // Futtatjuk a törlő SQL parancsot
-    db.run(sql, { $productId: productId }, function (err) {
+    db.run(sql, { $characterId: characterId }, function (err) {
       if (err) {
         console.error(err);
         res.status(500).json({ error: 'Internal Server Error' });
       } else {
         // Ellenőrizzük, hogy valóban töröltünk-e egy rekordot
         if (this.changes > 0) {
-          res.status(200).json({ message: 'Product deleted successfully' });
+          res.status(200).json({ message: 'character deleted successfully' });
         } else {
-          res.status(404).json({ error: 'Product not found' });
+          res.status(404).json({ error: 'character not found' });
         }
       }
     });
@@ -263,39 +290,25 @@ app.use(express.json());
 // ROUNTING °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
 
   // Serve static files from FRONTEND directory
-  app.use(express.static(path.join(__dirname, '../frontend')));
+  app.use(express.static(path.join(__dirname, '../client')));
 
   // Root
   app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/index.html'));
+    res.sendFile(path.join(__dirname, '../client/index.html'));
     const currentDate = new Date().toLocaleString();
     console.log(`[SITE ROUTING] ${currentDate}: Serving Homepage`);
   });
 
   // characters
   app.get('/characters', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/characters.html'));
+    res.sendFile(path.join(__dirname, '../client/characters.html'));
     const currentDate = new Date().toLocaleString();
     console.log(`[SITE ROUTING] ${currentDate}: Serving characters page`);
   });
 
-  // Cart
-  app.get('/cart', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/cart.html'));
-    const currentDate = new Date().toLocaleString();
-    console.log(`[SITE ROUTING] ${currentDate}: Serving Cart page`);
-  });
-
-  // Checkout
-  app.get('/checkout', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/checkout.html'));
-    const currentDate = new Date().toLocaleString();
-    console.log(`[SITE ROUTING] ${currentDate}: Serving Checkout page`);
-  });
-
   // Editor
   app.get('/editor', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/editor.html'));
+    res.sendFile(path.join(__dirname, '../client/editor.html'));
     const currentDate = new Date().toLocaleString();
     console.log(`[SITE ROUTING] ${currentDate}: Serving Editor page`);
   });
