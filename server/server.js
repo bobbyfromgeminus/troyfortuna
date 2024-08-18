@@ -308,7 +308,7 @@ app.use(express.json());
 
   // Editor
   app.get('/editor', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/editor.html'));
+    res.sendFile(path.join(__dirname, '../client/editor/index.html'));
     const currentDate = new Date().toLocaleString();
     console.log(`[SITE ROUTING] ${currentDate}: Serving Editor page`);
   });

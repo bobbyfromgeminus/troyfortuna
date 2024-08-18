@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+<body data-bs-theme="dark">
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">SW Editor</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" name="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown link
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+
+        <form id="newcharacter">
+            
+            <div class="mb-1">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" name="name" aria-describedby="nameHelp">
+              <div name="nameHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="name2" class="form-label">Name2</label>
+                <input type="text" class="form-control" name="name2" aria-describedby="name2Help">
+                <div name="name2Help" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="species" class="form-label">species</label>
+                <input type="text" class="form-control" name="species" aria-describedby="speciesHelp">
+                <div name="speciesHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="gender" class="form-label">gender</label>
+                <input type="text" class="form-control" name="gender" aria-describedby="genderHelp">
+                <div name="genderHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="height" class="form-label">height</label>
+                <input type="number" class="form-control" name="height" aria-describedby="heightHelp">
+                <div name="heightHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="weight" class="form-label">weight</label>
+                <input type="number" class="form-control" name="weight" aria-describedby="weightHelp">
+                <div name="weightHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="jedi" class="form-label">jedi</label>
+                <input type="number" class="form-control" name="jedi" aria-describedby="jediHelp" min="0" max="1">
+                <div name="jediHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="attributes_physicalStrength" class="form-label">attributes_physicalStrength</label>
+                <input type="number" class="form-control" name="attributes_physicalStrength" aria-describedby="attributes_physicalStrengthHelp" min="0" max="100">
+                <div name="attributes_physicalStrengthHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="attributes_intelligence" class="form-label">attributes_intelligence</label>
+                <input type="number" class="form-control" name="attributes_intelligence" aria-describedby="attributes_intelligenceHelp" min="0" max="100">
+                <div name="attributes_intelligenceHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="attributes_empathy" class="form-label">attributes_empathy</label>
+                <input type="number" class="form-control" name="attributes_empathy" aria-describedby="attributes_empathyHelp" min="0" max="100">
+                <div name="attributes_empathyHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="attributes_endurance" class="form-label">attributes_endurance</label>
+                <input type="number" class="form-control" name="attributes_endurance" aria-describedby="attributes_enduranceHelp" min="0" max="100">
+                <div name="attributes_enduranceHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="attributes_agility" class="form-label">attributes_agility</label>
+                <input type="number" class="form-control" name="attributes_agility" aria-describedby="attributes_agilityHelp" min="0" max="100">
+                <div name="attributes_agilityHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="forceAbilities_forcePush" class="form-label">forceAbilities_forcePush</label>
+                <input type="number" class="form-control" name="forceAbilities_forcePush" aria-describedby="forceAbilities_forcePushHelp" min="0" max="100">
+                <div name="forceAbilities_forcePushHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="forceAbilities_forceHeal" class="form-label">forceAbilities_forceHeal</label>
+                <input type="number" class="form-control" name="forceAbilities_forceHeal" aria-describedby="forceAbilities_forceHealHelp" min="0" max="100">
+                <div name="forceAbilities_forceHealHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="forceAbilities_forceChoke" class="form-label">forceAbilities_forceChoke</label>
+                <input type="number" class="form-control" name="forceAbilities_forceChoke" aria-describedby="forceAbilities_forceChokeHelp" min="0" max="100">
+                <div name="forceAbilities_forceChokeHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="forceAbilities_forceLightning" class="form-label">forceAbilities_forceLightning</label>
+                <input type="number" class="form-control" name="forceAbilities_forceLightning" aria-describedby="forceAbilities_forceLightningHelp" min="0" max="100">
+                <div name="forceAbilities_forceLightningHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="forceAbilities_mindTrick" class="form-label">forceAbilities_mindTrick</label>
+                <input type="number" class="form-control" name="forceAbilities_mindTrick" aria-describedby="forceAbilities_mindTrickHelp" min="0" max="100">
+                <div name="forceAbilities_mindTrickHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="jediSkills_lightsaberMastery" class="form-label">jediSkills_lightsaberMastery</label>
+                <input type="number" class="form-control" name="jediSkills_lightsaberMastery" aria-describedby="jediSkills_lightsaberMasteryHelp" min="0" max="100">
+                <div name="jediSkills_lightsaberMasteryHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="jediSkills_stealth" class="form-label">jediSkills_stealth</label>
+                <input type="number" class="form-control" name="jediSkills_stealth" aria-describedby="jediSkills_stealthHelp" min="0" max="100">
+                <div name="jediSkills_stealthHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="jediSkills_defense" class="form-label">jediSkills_defense</label>
+                <input type="number" class="form-control" name="jediSkills_defense" aria-describedby="jediSkills_defenseHelp" min="0" max="100">
+                <div name="jediSkills_defenseHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="jediSkills_healing" class="form-label">jediSkills_healing</label>
+                <input type="number" class="form-control" name="jediSkills_healing" aria-describedby="jediSkills_healingHelp" min="0" max="100">
+                <div name="jediSkills_healingHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="jediSkills_illusion" class="form-label">jediSkills_illusion</label>
+                <input type="number" class="form-control" name="jediSkills_illusion" aria-describedby="jediSkills_illusionHelp" min="0" max="100">
+                <div name="jediSkills_illusionHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="health" class="form-label">health</label>
+                <input type="number" class="form-control" name="health" aria-describedby="healthHelp" min="0" max="100">
+                <div name="healthHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="stamina" class="form-label">stamina</label>
+                <input type="number" class="form-control" name="stamina" aria-describedby="staminaHelp" min="0" max="100">
+                <div name="staminaHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="equipment" class="form-label">equipment</label>
+                <input type="text" class="form-control" name="equipment" aria-describedby="equipmentHelp">
+                <div name="equipmentHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="backstory" class="form-label">backstory</label>
+                <input type="text" class="form-control" name="backstory" aria-describedby="backstoryHelp">
+                <div name="backstoryHelp" class="form-text">...</div>
+            </div>
+
+            <div class="mb-1">
+                <label for="duel" class="form-label">duel</label>
+                <input type="text" class="form-control" name="duel" aria-describedby="duelHelp">
+                <div name="duelHelp" class="form-text">...</div>
+            </div>
+
+
+
+            <!--div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" name="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div-->
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        
+    </div>
+
+
+    <script src="./js/newcharacter.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
+</html>
