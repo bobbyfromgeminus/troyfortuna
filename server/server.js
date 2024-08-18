@@ -310,7 +310,21 @@ app.use(express.json());
   app.get('/editor', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/editor/index.html'));
     const currentDate = new Date().toLocaleString();
-    console.log(`[SITE ROUTING] ${currentDate}: Serving Editor page`);
+    console.log(`[SITE ROUTING] ${currentDate}: Serving Editor front page`);
+  });
+
+  // Editor - Character list
+  app.get('/editor/characters', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/editor/list_characters.html'));
+    const currentDate = new Date().toLocaleString();
+    console.log(`[SITE ROUTING] ${currentDate}: Serving Character list page`);
+  });
+
+  // Editor - Character creator
+  app.get('/editor/create_new_character', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/editor/create_character.html'));
+    const currentDate = new Date().toLocaleString();
+    console.log(`[SITE ROUTING] ${currentDate}: Serving Character creator page`);
   });
 
 

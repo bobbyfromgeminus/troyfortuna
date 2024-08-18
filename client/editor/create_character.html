@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+<body data-bs-theme="dark">
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/editor">SW Editor</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" name="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/editor/characters">Characters</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+
+    <div class=" col-10 offset-1 mt-5">
+
+        <h4 class="mb-3">Create New Character</h4>
+
+        <form id="newcharacter" class="d-flex flex-row flex-wrap">
+
+            <div class="px-5 border-end">
+
+                <h5 class="text-warning mb-3">Basics</h5>
+
+                <div class="my-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" name="name" aria-describedby="nameHelp">
+                    <div name="nameHelp" class="form-text">...</div>
+                  </div>
+      
+                  <div class="my-3">
+                      <label for="species" class="form-label">species</label>
+                      <input type="text" class="form-control" name="species" aria-describedby="speciesHelp">
+                      <div name="speciesHelp" class="form-text"></div>
+                  </div>
+      
+                  <div class="my-3">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="gender" id="gender1" value="male" checked>
+                      <label class="form-check-label" for="gender1">
+                        Male
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="gender" id="gender2" value="female">
+                      <label class="form-check-label" for="gender2">
+                        Female
+                      </label>
+                    </div>
+                  </div>
+      
+                  <div class="my-3">
+                      <label for="height" class="form-label">height</label>
+                      <input type="number" value="0" class="form-control" name="height" aria-describedby="heightHelp">
+                      <div name="heightHelp" class="form-text">integer</div>
+                  </div>
+      
+                  <div class="my-3">
+                      <label for="weight" class="form-label">weight</label>
+                      <input type="number" value="0" class="form-control" name="weight" aria-describedby="weightHelp">
+                      <div name="weightHelp" class="form-text">integer</div>
+                  </div>
+      
+                  <div class="my-3">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="jedi" id="flexRadioDefault1" value="true" checked>
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          Jedi
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="jedi" id="flexRadioDefault2" value="false">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          not Jedi
+                        </label>
+                      </div>
+                  </div>
+
+            </div>
+
+
+            <div class="px-5 border-end">
+
+                <h5 class="text-warning mb-3">Attributes</h5>
+
+                <div class="my-3">
+                    <label for="attributes_physicalStrength" class="form-label">Physical Strength</label>
+                    <input type="number" value="0" class="form-control" name="attributes_physicalStrength" aria-describedby="attributes_physicalStrengthHelp" min="0" max="100">
+                    <div name="attributes_physicalStrengthHelp" class="form-text">integer between 0 and 100</div>
+                </div>
+    
+                <div class="my-3">
+                    <label for="attributes_intelligence" class="form-label">Intelligence</label>
+                    <input type="number" value="0" class="form-control" name="attributes_intelligence" aria-describedby="attributes_intelligenceHelp" min="0" max="100">
+                    <div name="attributes_intelligenceHelp" class="form-text">integer between 0 and 100</div>
+                </div>
+
+                <div class="my-3">
+                    <label for="attributes_empathy" class="form-label">Empathy</label>
+                    <input type="number" value="0" class="form-control" name="attributes_empathy" aria-describedby="attributes_empathyHelp" min="0" max="100">
+                    <div name="attributes_empathyHelp" class="form-text">integer between 0 and 100</div>
+                </div>
+    
+                <div class="my-3">
+                    <label for="attributes_endurance" class="form-label">Endurance</label>
+                    <input type="number" value="0" class="form-control" name="attributes_endurance" aria-describedby="attributes_enduranceHelp" min="0" max="100">
+                    <div name="attributes_enduranceHelp" class="form-text">integer between 0 and 100</div>
+                </div>
+    
+                <div class="my-3">
+                    <label for="attributes_agility" class="form-label">Agility</label>
+                    <input type="number" value="0" class="form-control" name="attributes_agility" aria-describedby="attributes_agilityHelp" min="0" max="100">
+                    <div name="attributes_agilityHelp" class="form-text">integer between 0 and 100</div>
+                </div>
+
+            </div>
+
+
+            <div class="px-5 border-end">
+
+                <h5 class="text-warning mb-3">Force Abilities</h5>
+    
+                <div class="my-3">
+                    <label for="forceAbilities_forcePush" class="form-label">Force Push</label>
+                    <input type="number" value="0" class="form-control" name="forceAbilities_forcePush" aria-describedby="forceAbilities_forcePushHelp" min="0" max="100">
+                    <div name="forceAbilities_forcePushHelp" class="form-text">integer between 0 and 100</div>
+                </div>
+    
+                <div class="my-3">
+                    <label for="forceAbilities_forceHeal" class="form-label">Force Heal</label>
+                    <input type="number" value="0" class="form-control" name="forceAbilities_forceHeal" aria-describedby="forceAbilities_forceHealHelp" min="0" max="100">
+                    <div name="forceAbilities_forceHealHelp" class="form-text">integer between 0 and 100</div>
+                </div>
+    
+                <div class="my-3">
+                    <label for="forceAbilities_forceChoke" class="form-label">Force Choke</label>
+                    <input type="number" value="0" class="form-control" name="forceAbilities_forceChoke" aria-describedby="forceAbilities_forceChokeHelp" min="0" max="100">
+                    <div name="forceAbilities_forceChokeHelp" class="form-text">integer between 0 and 100</div>
+                </div>
+    
+                <div class="my-3">
+                    <label for="forceAbilities_forceLightning" class="form-label">Force Lightning</label>
+                    <input type="number" value="0" class="form-control" name="forceAbilities_forceLightning" aria-describedby="forceAbilities_forceLightningHelp" min="0" max="100">
+                    <div name="forceAbilities_forceLightningHelp" class="form-text">integer between 0 and 100</div>
+                </div>
+    
+                <div class="my-3">
+                    <label for="forceAbilities_mindTrick" class="form-label">Mind Trick</label>
+                    <input type="number" value="0" class="form-control" name="forceAbilities_mindTrick" aria-describedby="forceAbilities_mindTrickHelp" min="0" max="100">
+                    <div name="forceAbilities_mindTrickHelp" class="form-text">integer between 0 and 100</div>
+                </div>
+
+            </div>
+
+
+            <div class="px-5 border-end">
+
+                <h5 class="text-warning mb-3">Jedi Skills</h5>
+    
+                <div class="my-3">
+                    <label for="jediSkills_lightsaberMastery" class="form-label">Lightsaber Mastery</label>
+                    <input type="number" value="0" class="form-control" name="jediSkills_lightsaberMastery" aria-describedby="jediSkills_lightsaberMasteryHelp" min="0" max="100">
+                    <div name="jediSkills_lightsaberMasteryHelp" class="form-text">integer between 0 and 100</div>
+                </div>
+
+                <div class="my-3">
+                    <label for="jediSkills_stealth" class="form-label">Stealth</label>
+                    <input type="number" value="0" class="form-control" name="jediSkills_stealth" aria-describedby="jediSkills_stealthHelp" min="0" max="100">
+                    <div name="jediSkills_stealthHelp" class="form-text">integer between 0 and 100</div>
+                </div>
+    
+                <div class="my-3">
+                    <label for="jediSkills_defense" class="form-label">Defense</label>
+                    <input type="number" value="0" class="form-control" name="jediSkills_defense" aria-describedby="defensehelp" min="0" max="100">
+                    <div name="defensehelp" class="form-text">integer between 0 and 100</div>
+                </div>
+    
+                <div class="my-3">
+                    <label for="jediSkills_healing" class="form-label">Healing</label>
+                    <input type="number" value="0" class="form-control" name="jediSkills_healing" aria-describedby="jediSkills_healingHelp" min="0" max="100">
+                    <div name="jediSkills_healingHelp" class="form-text">integer between 0 and 100</div>
+                </div>
+    
+                <div class="my-3">
+                    <label for="jediSkills_illusion" class="form-label">Illusion</label>
+                    <input type="number" value="0" class="form-control" name="jediSkills_illusion" aria-describedby="jediSkills_illusionHelp" min="0" max="100">
+                    <div name="jediSkills_illusionHelp" class="form-text">integer between 0 and 100</div>
+                </div>
+
+            </div>
+
+
+            <div class="px-5">
+
+                <h5 class="text-warning mb-3">Extras</h5>
+    
+                <div class="my-3">
+                    <label for="health" class="form-label">Health</label>
+                    <input type="number" value="100" class="form-control" name="health" aria-describedby="healthHelp" min="0" max="100">
+                    <div name="healthHelp" class="form-text">integer between 0 and 100</div>
+                </div>
+    
+                <div class="my-3">
+                    <label for="stamina" class="form-label">stamina</label>
+                    <input type="number" value="100" class="form-control" name="stamina" aria-describedby="staminaHelp" min="0" max="100">
+                    <div name="staminaHelp" class="form-text">integer between 0 and 100</div>
+                </div>
+    
+                <div class="my-3">
+                    <label for="equipment" class="form-label">equipment</label>
+                    <input type="text" class="form-control" name="equipment" aria-describedby="equipmentHelp">
+                    <div name="equipmentHelp" class="form-text">array</div>
+                </div>
+    
+                <div class="my-3">
+                    <label for="backstory" class="form-label">backstory</label>
+                    <input type="text" class="form-control" name="backstory" aria-describedby="backstoryHelp">
+                    <div name="backstoryHelp" class="form-text"></div>
+                </div>
+    
+                <div class="my-3">
+                    <label for="duel" class="form-label">duel</label>
+                    <input type="text" class="form-control" name="duel" aria-describedby="duelHelp">
+                    <div name="duelHelp" class="form-text">array</div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+            </div>
+
+            
+
+            <!--div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" name="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div-->
+
+        </form>
+        
+    </div>
+
+
+    <script src="./js/create_character.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
+</html>

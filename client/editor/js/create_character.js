@@ -1,3 +1,9 @@
+function cleanString(input) {
+    let cleaned = input.replace(/[^a-zA-Z0-9 ]/g, '');
+    cleaned = cleaned.replace(/ /g, '_');
+    return cleaned.toLowerCase();
+}
+
 
 document.querySelector('#newcharacter').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -8,6 +14,7 @@ document.querySelector('#newcharacter').addEventListener('submit', function(even
     formData.forEach((value, key) => {    
         result[key] = value;
     });
+    result.name2 = cleanString(result.name);
 
     /*
     if (result.equipment) {
