@@ -186,3 +186,37 @@ export const ventress = new Character(11, 'Asajj Ventress', 'Nightsister', 'Fema
     [5]
 );
 */
+
+const transformedCharacters = characters.map(character => {
+    return {
+        "name": character.name,
+        "name2": character.name2,
+        "species": character.species,
+        "gender": character.gender,
+        "height": String(character.height),
+        "weight": String(character.weight),
+        "jedi": String(character.jedi),
+        "attributes_physicalStrength": String(character.attributes.physicalStrength),
+        "attributes_intelligence": String(character.attributes.intelligence),
+        "attributes_empathy": String(character.attributes.empathy),
+        "attributes_endurance": String(character.attributes.endurance),
+        "attributes_agility": String(character.attributes.agility),
+        "forceAbilities_forcePush": String(character.forceAbilities.forcePush),
+        "forceAbilities_forceHeal": String(character.forceAbilities.forceHeal),
+        "forceAbilities_forceChoke": String(character.forceAbilities.forceChoke),
+        "forceAbilities_forceLightning": String(character.forceAbilities.forceLightning),
+        "forceAbilities_mindTrick": String(character.forceAbilities.mindTrick),
+        "jediSkills_lightsaberMastery": String(character.jediSkills.lightsaberMastery),
+        "jediSkills_stealth": String(character.jediSkills.stealth),
+        "jediSkills_defense": String(character.jediSkills.defense),
+        "jediSkills_healing": String(character.jediSkills.healing),
+        "jediSkills_illusion": String(character.jediSkills.illusion),
+        "health": String(character.health),
+        "stamina": String(character.stamina),
+        "equipment": character.equipment.join(', '),
+        "backstory": character.backstory,
+        "duel": character.duel.join(', ')
+    };
+});
+
+console.log(transformedCharacters);
