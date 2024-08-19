@@ -327,6 +327,13 @@ app.use(express.json());
     console.log(`[SITE ROUTING] ${currentDate}: Serving Character creator page`);
   });
 
+  // Editor - Character editor
+  app.get('/editor/update_character/:id', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/editor/update_character.html'));
+    const currentDate = new Date().toLocaleString();
+    console.log(`[SITE ROUTING] ${currentDate}: Serving Character editor page`);
+  });
+
 
 // SERVER STARTING ----------------------------------------------
 

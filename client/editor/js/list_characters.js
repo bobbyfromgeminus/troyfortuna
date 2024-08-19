@@ -6,7 +6,7 @@ const createTableRow = (character) => {
                 <td>${character.jedi}</td>
                 <td class="text-end">
                     <button type="button" class="mx-1 btn btn-sm btn-outline-info">show</button>
-                    <button type="button" class="mx-1 btn btn-sm btn-outline-warning">edit</button>
+                    <button type="button" class="mx-1 btn btn-sm btn-outline-warning" onclick="updateCharacter(${character.id})">edit</button>
                     <button type="button" class="mx-1 btn btn-sm btn-outline-danger" onclick="deleteCharacter(${character.id})">delete</button>
                 </td>
             </tr>`);
@@ -25,6 +25,10 @@ const getCharacters = async () => {
     } catch (error) {
         console.error(error.message)
     }
+}
+
+const updateCharacter = (id) => {
+    window.location.pathname = "/editor/update_character/"+id;
 }
 
 const deleteCharacter = async (id) => {

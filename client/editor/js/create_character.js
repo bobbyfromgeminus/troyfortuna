@@ -5,33 +5,27 @@ function cleanString(input) {
 }
 
 
-document.querySelector('#newcharacter').addEventListener('submit', function(event) {
+document.querySelector('#newcharacter').addEventListener('submit', async function(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-    const result = {};
+    const characterData = {};
 
     formData.forEach((value, key) => {    
-        result[key] = value;
+        characterData[key] = value;
     });
-    result.name2 = cleanString(result.name);
+    characterData.name2 = cleanString(characterData.name);
 
-    /*
-    if (result.equipment) {
-        result.equipment = result.equipment.split(',').map(item => item.trim());
-    }
-    if (result.duel) {
-        result.duel = result.duel.split(',').map(item => parseInt(item.trim()));
-    }
-    */
-
-    const jsonOutput = JSON.stringify(result);
-    fetch('http://localhost:3000/api/characters', {
+    const jsonOutput = JSON.stringify(characterData);
+    const response = await fetch('http://localhost:3000/api/characters', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: jsonOutput
     });
+    const result = await response.json();
+    if (result.message) window.location.pathname = "/editor/characters";
+    else if (result.error) alert(result.error);
     
 });
